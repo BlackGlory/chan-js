@@ -54,19 +54,19 @@ new ChanManager({
 ChanManager#JsonSchema.getIds(): Promise<string[]>
 ```
 
-#### get
+##### get
 
 ```ts
 ChanManager#JsonSchema.get(id: string): Promise<Json>
 ```
 
-#### set
+##### set
 
 ```ts
 ChanManager#JsonSchema.set(id: string, schema: Json): Promise<void>
 ```
 
-#### remove
+##### remove
 
 ```ts
 ChanManager#JsonSchema.remove(id: string): Promise<void>
