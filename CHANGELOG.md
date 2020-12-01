@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/BlackGlory/chan-js/compare/v0.1.0...v0.2.0) (2020-12-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* ReadTokenRequired.set => setReadTokenRequired
+ReadTokenRequired.remove => removeReadTokenRequired
+WriteTokenRequired.set => setWriteTokenRequired
+WriteTokenRequired.remove => removeWriteTokenRequired
+
+* modify APIs ([ac71334](https://github.com/BlackGlory/chan-js/commit/ac71334203028d70b9b2743e15e4487f12342ffa))
+
 ## 0.1.0 (2020-12-01)
 
 
