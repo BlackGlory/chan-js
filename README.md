@@ -69,7 +69,7 @@ ChanManager#JsonSchema.set(id: string, schema: Json): Promise<void>
 #### remove
 
 ```ts
-ChanManager#jsonSchema.remove(id: string): Promise<void>
+ChanManager#JsonSchema.remove(id: string): Promise<void>
 ```
 
 #### Blacklist
