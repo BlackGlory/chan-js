@@ -32,54 +32,50 @@ describe('TokenPolicyClient', () => {
     })
   })
 
-  describe('WriteTokenRequired', () => {
-    it('set(id: string, val: boolean): Promise<void>', async () => {
-      const client = createClient()
-      const id = 'id'
-      const val = true
+  it('setWriteTokenRequired(id: string, val: boolean): Promise<void>', async () => {
+    const client = createClient()
+    const id = 'id'
+    const val = true
 
-      const result = client.WriteTokenRequired.set(id, val)
-      const proResult = await result
+    const result = client.setWriteTokenRequired(id, val)
+    const proResult = await result
 
-      expect(result).toBePromise()
-      expect(proResult).toBeUndefined()
-    })
-
-    it('remove(id: string): Promise<void>', async () => {
-      const client = createClient()
-      const id = 'id'
-
-      const result = client.WriteTokenRequired.remove(id)
-      const proResult = await result
-
-      expect(result).toBePromise()
-      expect(proResult).toBeUndefined()
-    })
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
   })
 
-  describe('ReadTokenRequired', () => {
-    it('set(id: string, val: boolean): Promise<void>', async () => {
-      const client = createClient()
-      const id = 'id'
-      const val = true
+  it('removeWriteTokenRequired(id: string): Promise<void>', async () => {
+    const client = createClient()
+    const id = 'id'
 
-      const result = client.ReadTokenRequired.set(id, val)
-      const proResult = await result
+    const result = client.removeWriteTokenRequired(id)
+    const proResult = await result
 
-      expect(result).toBePromise()
-      expect(proResult).toBeUndefined()
-    })
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
+  })
 
-    it('remove(id: string): Promise<void>', async () => {
-      const client = createClient()
-      const id = 'id'
+  it('setReadTokenRequired(id: string, val: boolean): Promise<void>', async () => {
+    const client = createClient()
+    const id = 'id'
+    const val = true
 
-      const result = client.ReadTokenRequired.remove(id)
-      const proResult = await result
+    const result = client.setReadTokenRequired(id, val)
+    const proResult = await result
 
-      expect(result).toBePromise()
-      expect(proResult).toBeUndefined()
-    })
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
+  })
+
+  it('removeReadTokenRequired(id: string): Promise<void>', async () => {
+    const client = createClient()
+    const id = 'id'
+
+    const result = client.removeReadTokenRequired(id)
+    const proResult = await result
+
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
   })
 })
 

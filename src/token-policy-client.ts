@@ -8,9 +8,6 @@ export interface TokenPolicyClientOptions {
 export class TokenPolicyClient {
   constructor(private options: TokenPolicyClientOptions) {}
 
-  WriteTokenRequired = new WriteTokenRequired(this.options)
-  ReadTokenRequired = new ReadTokenRequired(this.options)
-
   async getIds(): Promise<string[]> {
     const res = await get({
       baseUrl: this.options.server
@@ -31,12 +28,8 @@ export class TokenPolicyClient {
     })
     return await res.json()
   }
-}
 
-class WriteTokenRequired {
-  constructor(private options: TokenPolicyClientOptions) {}
-
-  async set(id: string, val: boolean): Promise<void> {
+  async setWriteTokenRequired(id: string, val: boolean): Promise<void> {
     await putJson({
       baseUrl: this.options.server
     , pathname: `/api/chan/${id}/token-policies/write-token-required`
@@ -45,19 +38,15 @@ class WriteTokenRequired {
     })
   }
 
-  async remove(id: string): Promise<void> {
+  async removeWriteTokenRequired(id: string): Promise<void> {
     await del({
       baseUrl: this.options.server
     , pathname: `/api/chan/${id}/token-policies/write-token-required`
     , adminPassword: this.options.adminPassword
     })
   }
-}
 
-class ReadTokenRequired {
-  constructor(private options: TokenPolicyClientOptions) {}
-
-  async set(id: string, val: boolean): Promise<void> {
+  async setReadTokenRequired(id: string, val: boolean): Promise<void> {
     await putJson({
       baseUrl: this.options.server
     , pathname: `/api/chan/${id}/token-policies/read-token-required`
@@ -66,7 +55,7 @@ class ReadTokenRequired {
     })
   }
 
-  async remove(id: string): Promise<void> {
+  async removeReadTokenRequired(id: string): Promise<void> {
     await del({
       baseUrl: this.options.server
     , pathname: `/api/chan/${id}/token-policies/read-token-required`

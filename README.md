@@ -129,32 +129,28 @@ ChanManager#TokenPolicy.get(id: string): Promise<{
 }>
 ```
 
-##### WriteTokenRequired
-
-###### set
+##### setWriteTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.WriteTokenRequired.set(id: string, val: boolean): Promise<void>
+ChanManager#TokenPolicy.setWriteTokenRequired(id: string, val: boolean): Promise<void>
 ```
 
-##### remove
+##### removeWriteTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.WriteTokenRequired.remove(id: string): Promise<void>
+ChanManager#TokenPolicy.removeWriteTokenRequired(id: string): Promise<void>
 ```
 
-##### ReadTokenRequired
-
-###### set
+##### setReadTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.ReadTokenRequired.set(id: string, val: boolean): Promise<void>
+ChanManager#TokenPolicy.setReadTokenRequired(id: string, val: boolean): Promise<void>
 ```
 
-###### remove
+##### removeReadTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.ReadTokenRequired.remove(id: string): Promise<void>
+ChanManager#TokenPolicy.removeReadTokenRequired(id: string): Promise<void>
 ```
 
 #### Token
