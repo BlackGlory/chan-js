@@ -22,19 +22,19 @@ new ChanClient({
 #### enqueue
 
 ```ts
-ChanClient#enqueue(id: string, val: string, options: {
+ChanClient#enqueue(id: string, val: string, options?: {
   signal?: AbortSignal
   token?: string
-} = {}): Promise<void>
+}): Promise<void>
 ```
 
 #### dequeue
 
 ```ts
-ChanClient#dequeue(id: string, options: {
+ChanClient#dequeue(id: string, options?: {
   signal?: AbortSignal
   token?: string
-} = {}): Promise<string>
+}): Promise<string>
 ```
 
 ### ChanManager
