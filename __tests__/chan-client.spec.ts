@@ -7,7 +7,7 @@ beforeEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('ChanClient', () => {
-  it('enqueue(id: string, val: string, options?: { signal?: string, token?: string })', async () => {
+  it('enqueue(id: string, val: string, options?: { signal?: string, token?: string }): Promise<void>', async () => {
     const client = createClient()
     const id = 'id'
     const val = 'message'
@@ -19,7 +19,7 @@ describe('ChanClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('dequeue(id: string, options?: { signal?: string, token?: string })', async () => {
+  it('dequeue(id: string, options?: { signal?: string, token?: string }): Promise<string>', async () => {
     const client = createClient()
     const id = 'id'
 
