@@ -1,6 +1,7 @@
 import { MockedRequest } from 'msw'
 
 export const ADMIN_PASSWORD = 'password'
+export const TOKEN = 'token'
 
 export function badAuth(req: MockedRequest): boolean {
   return getPassword(req) !== ADMIN_PASSWORD
@@ -18,5 +19,12 @@ export function badJson(req: MockedRequest): boolean {
   const contentType = req.headers.get('Content-Type')
   if (contentType !== 'application/json') return true
   if (!req.body) return true
+  return false
+}
+
+export function badToken(req: MockedRequest): boolean {
+  const token = req.url.searchParams.get('token')
+  if (!token) return true
+  if (token !== TOKEN) return true
   return false
 }

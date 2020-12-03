@@ -11,8 +11,10 @@ export async function get(
   }
 ): Promise<Response> {
   const url = resolve(baseUrl, pathname)
+
   const headers = new Headers()
   if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
+
   const res = await fetch(url, { headers, signal })
   checkHTTPStatus(res)
   return res
@@ -27,6 +29,7 @@ export async function postText(
   }
 ): Promise<Response> {
   const url = resolve(baseUrl, pathname)
+
   const res = await fetch(url, {
     method: 'POST'
   , body
@@ -46,11 +49,11 @@ export async function postJson(
   }
 ): Promise<Response> {
   const url = resolve(baseUrl, pathname)
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
-  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
   const body = JSON.stringify(json)
+
+  const headers = new Headers({ 'Content-Type': 'application/json' })
+  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
+
   const res = await fetch(url, {
     method: 'POST'
   , headers
@@ -70,10 +73,10 @@ export async function del(
   }
 ): Promise<Response> {
   const url = resolve(baseUrl, pathname)
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
+
+  const headers = new Headers({ 'Content-Type': 'application/json' })
   if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
+
   const res = await fetch(url, {
     method: 'DELETE'
   , headers
@@ -92,8 +95,10 @@ export async function put(
   }
 ): Promise<Response> {
   const url = resolve(baseUrl, pathname)
+
   const headers = new Headers()
   if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
+
   const res = await fetch(url, {
     method: 'PUT'
   , headers
@@ -113,10 +118,10 @@ export async function putJson(
   }
 ): Promise<Response> {
   const url = resolve(baseUrl, pathname)
-  const headers = new Headers({
-    'Content-Type': 'application/json'
-  })
+
+  const headers = new Headers({ 'Content-Type': 'application/json' })
   if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
+
   const res = await fetch(url, {
     method: 'PUT'
   , headers

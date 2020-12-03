@@ -1,5 +1,6 @@
 import { server } from '@test/chan.mock'
 import { ChanClient } from '@src/chan-client'
+import { TOKEN } from './utils'
 import '@blackglory/jest-matchers'
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
@@ -34,6 +35,6 @@ describe('ChanClient', () => {
 function createClient() {
   return new ChanClient({
     server: 'http://localhost'
-  , token: 'token'
+  , token: TOKEN
   })
 }
