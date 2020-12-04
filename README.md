@@ -3,9 +3,9 @@
 ## Install
 
 ```sh
-npm install --save @blackglory/chan
+npm install --save @blackglory/chan-js
 # or
-yarn add @blackglory/chan
+yarn add @blackglory/chan-js
 ```
 
 ## API
