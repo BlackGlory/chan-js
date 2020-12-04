@@ -1,141 +1,28 @@
-import { Json } from '@blackglory/types'
-import { fetch, Headers } from 'cross-fetch'
+import { Headers } from 'cross-fetch'
+import { HTTPOptions, HTTPOptionsTransformer } from 'extra-request'
 import { fromCode } from '@blackglory/http-status'
+import { Json } from '@blackglory/types'
 
-export async function get(
-  { baseUrl, pathname, adminPassword, signal }: {
-    baseUrl: string
-    pathname: string
-    adminPassword?: string
-    signal?: AbortSignal
+export function password(password: string): HTTPOptionsTransformer {
+  return (options: HTTPOptions) => {
+    const headers = new Headers(options.headers)
+    headers.set('Authorization', `Bearer ${password}`)
+    return {
+      ...options
+    , headers
+    }
   }
-): Promise<Response> {
-  const url = resolve(baseUrl, pathname)
-
-  const headers = new Headers()
-  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
-
-  const res = await fetch(url, { headers, signal })
-  checkHTTPStatus(res)
-  return res
 }
 
-export async function postText(
-  { baseUrl, pathname, body, signal }: {
-    baseUrl: string
-    pathname: string
-    body: string
-    signal?: AbortSignal
-  }
-): Promise<Response> {
-  const url = resolve(baseUrl, pathname)
-
-  const res = await fetch(url, {
-    method: 'POST'
-  , body
-  , signal
-  })
-  checkHTTPStatus(res)
-  return res
-}
-
-export async function postJson(
-  { baseUrl, pathname, json, adminPassword, signal }: {
-    baseUrl: string
-    pathname: string
-    json: Json
-    adminPassword?: string
-    signal?: AbortSignal
-  }
-): Promise<Response> {
-  const url = resolve(baseUrl, pathname)
-  const body = JSON.stringify(json)
-
-  const headers = new Headers({ 'Content-Type': 'application/json' })
-  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
-
-  const res = await fetch(url, {
-    method: 'POST'
-  , headers
-  , body
-  , signal
-  })
-  checkHTTPStatus(res)
-  return res
-}
-
-export async function del(
-  { baseUrl, pathname, adminPassword, signal }: {
-    baseUrl: string
-    pathname: string
-    adminPassword?: string
-    signal?: AbortSignal
-  }
-): Promise<Response> {
-  const url = resolve(baseUrl, pathname)
-
-  const headers = new Headers({ 'Content-Type': 'application/json' })
-  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
-
-  const res = await fetch(url, {
-    method: 'DELETE'
-  , headers
-  , signal
-  })
-  checkHTTPStatus(res)
-  return res
-}
-
-export async function put(
-  { baseUrl, pathname, adminPassword, signal }: {
-    baseUrl: string
-    pathname: string
-    adminPassword?: string
-    signal?: AbortSignal
-  }
-): Promise<Response> {
-  const url = resolve(baseUrl, pathname)
-
-  const headers = new Headers()
-  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
-
-  const res = await fetch(url, {
-    method: 'PUT'
-  , headers
-  , signal
-  })
-  checkHTTPStatus(res)
-  return res
-}
-
-export async function putJson(
-  { baseUrl, pathname, json, adminPassword, signal }: {
-    baseUrl: string
-    pathname: string
-    json: Json
-    adminPassword?: string
-    signal?: AbortSignal
-  }
-): Promise<Response> {
-  const url = resolve(baseUrl, pathname)
-
-  const headers = new Headers({ 'Content-Type': 'application/json' })
-  if (adminPassword) headers.append('Authorization', `Bearer ${adminPassword}`)
-
-  const res = await fetch(url, {
-    method: 'PUT'
-  , headers
-  , body: JSON.stringify(json)
-  , signal
-  })
-  checkHTTPStatus(res)
-  return res
-}
-
-function resolve(baseUrl: string, pathname: string): string {
-  return new URL(pathname, baseUrl).href
-}
-
-function checkHTTPStatus(res: Response) {
+export function checkHTTPStatus(res: Response): Response {
   if (!res.ok) throw fromCode(res.status)
+  return res
+}
+
+export function toJSON(res: Response): Promise<Json> {
+  return res.json()
+}
+
+export function toText(res: Response): Promise<string> {
+  return res.text()
 }

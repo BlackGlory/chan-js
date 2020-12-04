@@ -1,4 +1,7 @@
-import { postText, get } from './utils'
+import { fetch } from 'cross-fetch'
+import { checkHTTPStatus, toText } from './utils'
+import { get, post } from 'extra-request'
+import { url, pathname, text, searchParams, signal } from 'extra-request/lib/es2018/transformers'
 
 export interface ChanClientOptions {
   server: string
@@ -12,23 +15,35 @@ export class ChanClient {
     signal?: AbortSignal
     token?: string
   } = {}): Promise<void> {
-    const writeToken = options.token ?? this.options.token
-    await postText({
-      baseUrl: this.options.server
-    , pathname: writeToken ? `chan/${id}?token=${writeToken}` : `chan/${id}`
-    , body: val
-    })
+    const token = options.token ?? this.options.token
+
+    const req = post(
+      url(this.options.server)
+    , pathname(`chan/${id}`)
+    , token && searchParams({ token })
+    , text(val)
+    , options.signal && signal(options.signal)
+    )
+
+    await fetch(req)
+      .then(checkHTTPStatus)
   }
 
   async dequeue(id: string, options: {
     signal?: AbortSignal
     token?: string
   } = {}): Promise<string> {
-    const readToken = options.token ?? this.options.token
-    const res = await get({
-      baseUrl: this.options.server
-    , pathname: readToken ? `chan/${id}?token=${readToken}` : `chan/${id}`
-    })
-    return res.text()
+    const token = options.token ?? this.options.token
+
+    const req = get(
+      url(this.options.server)
+    , pathname(`chan/${id}`)
+    , token && searchParams({ token })
+    , options.signal && signal(options.signal)
+    )
+
+    return await fetch(req)
+      .then(checkHTTPStatus)
+      .then(toText)
   }
 }
