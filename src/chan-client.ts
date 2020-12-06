@@ -1,7 +1,7 @@
 import { fetch } from 'cross-fetch'
-import { checkHTTPStatus, toText } from './utils'
 import { get, post } from 'extra-request'
 import { url, pathname, text, searchParams, signal } from 'extra-request/lib/es2018/transformers'
+import { ok, toText } from 'extra-response'
 
 export interface ChanClientOptions {
   server: string
@@ -25,8 +25,7 @@ export class ChanClient {
     , options.signal && signal(options.signal)
     )
 
-    await fetch(req)
-      .then(checkHTTPStatus)
+    await fetch(req).then(ok)
   }
 
   async dequeue(id: string, options: {
@@ -43,7 +42,7 @@ export class ChanClient {
     )
 
     return await fetch(req)
-      .then(checkHTTPStatus)
+      .then(ok)
       .then(toText)
   }
 }
