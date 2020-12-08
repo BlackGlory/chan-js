@@ -20,6 +20,18 @@ describe('ChanClient', () => {
     expect(proResult).toBeUndefined()
   })
 
+  it('enqueueJSON(id: string, val: Json, options?: { signal?: string, token?: string }): Promise<void>', async () => {
+    const client = createClient()
+    const id = 'id'
+    const val = 'message'
+
+    const result = client.enqueue(id, val)
+    const proResult = await result
+
+    expect(result).toBePromise()
+    expect(proResult).toBeUndefined()
+  })
+
   it('dequeue(id: string, options?: { signal?: string, token?: string }): Promise<string>', async () => {
     const client = createClient()
     const id = 'id'
@@ -28,7 +40,18 @@ describe('ChanClient', () => {
     const proResult = await result
 
     expect(result).toBePromise()
-    expect(proResult).toBe('message')
+    expect(proResult).toBe('null')
+  })
+
+  it('dequeueJSON(id: string, options?: { signal?: string, token?: string }): Promise<Json>', async () => {
+    const client = createClient()
+    const id = 'id'
+
+    const result = client.dequeueJSON(id)
+    const proResult = await result
+
+    expect(result).toBePromise()
+    expect(proResult).toBe(null)
   })
 })
 

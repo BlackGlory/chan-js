@@ -28,6 +28,15 @@ ChanClient#enqueue(id: string, val: string, options?: {
 }): Promise<void>
 ```
 
+#### enqueueJSON
+
+```ts
+ChanClient#enqueueJSON(id: string, val: string, options?: {
+  signal?: AbortSignal
+  token?: string
+}): Promise<void>
+```
+
 #### dequeue
 
 ```ts
@@ -35,6 +44,15 @@ ChanClient#dequeue(id: string, options?: {
   signal?: AbortSignal
   token?: string
 }): Promise<string>
+```
+
+#### dequeueJSON
+
+```ts
+ChanClient#dequeueJSON(id: string, options?: {
+  signal?: AbortSignal
+  token?: string
+}): Promise<Json>
 ```
 
 ### ChanManager

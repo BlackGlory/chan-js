@@ -12,6 +12,6 @@ export const server = setupServer(
 , rest.get('/chan/:id', (req, res, ctx) => {
     if (badToken(req)) return res(ctx.status(401))
 
-    return res(ctx.status(200), ctx.text('message'))
+    return res(ctx.status(200), ctx.text('null'))
   })
 )
