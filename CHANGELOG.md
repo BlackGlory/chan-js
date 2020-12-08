@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/BlackGlory/chan-js/compare/v0.2.5...v0.2.6) (2020-12-08)
+
+
+### Features
+
+* add enqueueJSON, dequeueJSON ([83ce4dd](https://github.com/BlackGlory/chan-js/commit/83ce4ddbdfa7538a2f56a9f076cb83014f3d9dcc))
+
 ### [0.2.5](https://github.com/BlackGlory/chan-js/compare/v0.2.4...v0.2.5) (2020-12-08)
 
 ### [0.2.4](https://github.com/BlackGlory/chan-js/compare/v0.2.3...v0.2.4) (2020-12-06)
