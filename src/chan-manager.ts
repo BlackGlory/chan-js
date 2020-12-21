@@ -8,7 +8,6 @@ export interface ChanManagerOptions {
   server: string
   adminPassword: string
 }
-
 export class ChanManager {
   constructor(private options: ChanManagerOptions) {}
 

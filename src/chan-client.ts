@@ -9,16 +9,18 @@ export interface ChanClientOptions {
   token?: string
 }
 
+export interface ChanClientRequestOptions {
+  signal?: AbortSignal
+  token?: string
+}
+
 export class ChanClient {
   constructor(private options: ChanClientOptions) {}
 
   async enqueue(
     id: string
   , val: string
-  , options: {
-      signal?: AbortSignal
-      token?: string
-    } = {}
+  , options: ChanClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
 
@@ -36,10 +38,7 @@ export class ChanClient {
   async enqueueJSON(
     id: string
   , val: Json
-  , options: {
-      signal?: AbortSignal
-      token?: string
-    } = {}
+  , options: ChanClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
 
@@ -56,30 +55,21 @@ export class ChanClient {
 
   async dequeue(
     id: string
-  , options?: {
-      signal?: AbortSignal
-      token?: string
-    }
+  , options?: ChanClientRequestOptions
   ): Promise<string> {
     return this._dequeue(id, options).then(toText)
   }
 
   async dequeueJSON(
     id: string
-  , options?: {
-      signal?: AbortSignal
-      token?: string
-    }
+  , options?: ChanClientRequestOptions
   ): Promise<Json> {
     return this._dequeue(id, options).then(toJSON)
   }
 
   private async _dequeue(
     id: string
-  , options: {
-      signal?: AbortSignal
-      token?: string
-    } = {}
+  , options: ChanClientRequestOptions = {}
   ): Promise<Response> {
     const token = options.token ?? this.options.token
 

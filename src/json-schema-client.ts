@@ -2,22 +2,20 @@ import { fetch } from 'cross-fetch'
 import { Json } from '@blackglory/types'
 import { password } from './utils'
 import { get, put, del } from 'extra-request'
-import { url, pathname, json } from 'extra-request/lib/es2018/transformers'
+import { url, pathname, json, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
-
-export interface JsonSchemaClientOptions {
-  server: string
-  adminPassword: string
-}
+import type { ChanManagerOptions } from './chan-manager'
+import { ChanManagerRequestOptions } from './types'
 
 export class JsonSchemaClient {
-  constructor(private options: JsonSchemaClientOptions) {}
+  constructor(private options: ChanManagerOptions) {}
 
-  async getIds(): Promise<string[]> {
+  async getIds(options: ChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/api/chan-with-json-schema')
     , password(this.options.adminPassword)
+    , options.signal && signal(options.signal)
     )
 
     return await fetch(req)
@@ -25,11 +23,12 @@ export class JsonSchemaClient {
       .then(toJSON) as string[]
   }
 
-  async get(id: string): Promise<Json> {
+  async get(id: string, options: ChanManagerRequestOptions = {}): Promise<Json> {
     const req = get(
       url(this.options.server)
     , pathname(`/api/chan/${id}/json-schema`)
     , password(this.options.adminPassword)
+    , options.signal && signal(options.signal)
     )
 
     return await fetch(req)
@@ -37,22 +36,24 @@ export class JsonSchemaClient {
       .then(toJSON)
   }
 
-  async set(id: string, schema: Json): Promise<void> {
+  async set(id: string, schema: Json, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/api/chan/${id}/json-schema`)
     , password(this.options.adminPassword)
     , json(schema)
+    , options.signal && signal(options.signal)
     )
 
     await fetch(req).then(ok)
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/api/chan/${id}/json-schema`)
     , password(this.options.adminPassword)
+    , options.signal && signal(options.signal)
     )
 
     await fetch(req).then(ok)
