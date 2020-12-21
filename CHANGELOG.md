@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/BlackGlory/chan-js/compare/v0.2.6...v0.2.7) (2020-12-21)
+
+
+### Features
+
+* add RequestOptions ([327a7bf](https://github.com/BlackGlory/chan-js/commit/327a7bf6df3b33275412110004c981406d6d9501))
+
 ### [0.2.6](https://github.com/BlackGlory/chan-js/compare/v0.2.5...v0.2.6) (2020-12-08)
 
 
