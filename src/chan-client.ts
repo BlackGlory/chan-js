@@ -2,7 +2,6 @@ import { fetch } from 'cross-fetch'
 import { get, post } from 'extra-request'
 import { url, pathname, text, json, searchParams, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toText, toJSON } from 'extra-response'
-import { Json } from '@blackglory/types'
 
 export interface ChanClientOptions {
   server: string
@@ -35,9 +34,9 @@ export class ChanClient {
     await fetch(req).then(ok)
   }
 
-  async enqueueJSON(
+  async enqueueJSON<T>(
     id: string
-  , val: Json
+  , val: T
   , options: ChanClientRequestOptions = {}
   ): Promise<void> {
     const token = options.token ?? this.options.token
@@ -53,18 +52,18 @@ export class ChanClient {
     await fetch(req).then(ok)
   }
 
-  async dequeue(
+  dequeue(
     id: string
   , options?: ChanClientRequestOptions
   ): Promise<string> {
     return this._dequeue(id, options).then(toText)
   }
 
-  async dequeueJSON(
+  async dequeueJSON<T>(
     id: string
   , options?: ChanClientRequestOptions
-  ): Promise<Json> {
-    return this._dequeue(id, options).then(toJSON)
+  ): Promise<T> {
+    return await this._dequeue(id, options).then(toJSON) as T
   }
 
   private async _dequeue(
