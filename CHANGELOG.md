@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.15](https://github.com/BlackGlory/chan-js/compare/v0.2.14...v0.2.15) (2021-01-15)
+
+
+### Bug Fixes
+
+* esm bundle ([765a6d9](https://github.com/BlackGlory/chan-js/commit/765a6d917ce49b5d0b5d70d8b472b210ee60f479))
+
 ### [0.2.14](https://github.com/BlackGlory/chan-js/compare/v0.2.13...v0.2.14) (2021-01-08)
 
 ### [0.2.13](https://github.com/BlackGlory/chan-js/compare/v0.2.12...v0.2.13) (2021-01-04)
