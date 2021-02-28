@@ -4,12 +4,12 @@ import { WhitelistClient } from './whitelist-client'
 import { TokenPolicyClient } from './token-policy-client'
 import { TokenClient } from './token-client'
 
-export interface ChanManagerOptions {
+export interface IChanManagerOptions {
   server: string
   adminPassword: string
 }
 export class ChanManager {
-  constructor(private options: ChanManagerOptions) {}
+  constructor(private options: IChanManagerOptions) {}
 
   JsonSchema = new JsonSchemaClient(this.options)
   Blacklist = new BlacklistClient(this.options)

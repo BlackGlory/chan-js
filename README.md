@@ -20,7 +20,7 @@ new ChanClient({
 ```
 
 ```ts
-interface ChanClientRequestOptions {
+interface IChanClientRequestOptions {
   signal?: AbortSignal
   token?: string
 }
@@ -29,25 +29,25 @@ interface ChanClientRequestOptions {
 #### enqueue
 
 ```ts
-ChanClient#enqueue(id: string, val: string, options?: ChanClientRequestOptions): Promise<void>
+ChanClient#enqueue(id: string, val: string, options?: IChanClientRequestOptions): Promise<void>
 ```
 
 #### enqueueJSON
 
 ```ts
-ChanClient#enqueueJSON(id: string, val: string, options?: ChanClientRequestOptions): Promise<void>
+ChanClient#enqueueJSON(id: string, val: string, options?: IChanClientRequestOptions): Promise<void>
 ```
 
 #### dequeue
 
 ```ts
-ChanClient#dequeue(id: string, options?: ChanClientRequestOptions): Promise<string>
+ChanClient#dequeue(id: string, options?: IChanClientRequestOptions): Promise<string>
 ```
 
 #### dequeueJSON
 
 ```ts
-ChanClient#dequeueJSON(id: string, options?: ChanClientRequestOptions): Promise<Json>
+ChanClient#dequeueJSON(id: string, options?: IChanClientRequestOptions): Promise<Json>
 ```
 
 ### ChanManager
@@ -60,7 +60,7 @@ new ChanManager({
 ```
 
 ```ts
-interface ChanManagerRequestOptions {
+interface IChanManagerRequestOptions {
   signal?: AbortSignal
 }
 ```
@@ -70,25 +70,25 @@ interface ChanManagerRequestOptions {
 ##### getIds
 
 ```ts
-ChanManager#JsonSchema.getIds(options?: ChanManagerRequestOptions): Promise<string[]>
+ChanManager#JsonSchema.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
 ```
 
 ##### get
 
 ```ts
-ChanManager#JsonSchema.get(id: string, options?: ChanManagerRequestOptions): Promise<Json>
+ChanManager#JsonSchema.get(id: string, options?: IChanManagerRequestOptions): Promise<Json>
 ```
 
 ##### set
 
 ```ts
-ChanManager#JsonSchema.set(id: string, schema: Json, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#JsonSchema.set(id: string, schema: Json, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-ChanManager#JsonSchema.remove(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#JsonSchema.remove(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 #### Blacklist
@@ -96,19 +96,19 @@ ChanManager#JsonSchema.remove(id: string, options?: ChanManagerRequestOptions): 
 ##### getIds
 
 ```ts
-ChanManager#Blacklist.getIds(options?: ChanManagerRequestOptions): Promise<string[]>
+ChanManager#Blacklist.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
 ```
 
 ##### add
 
 ```ts
-ChanManager#Blacklist.add(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Blacklist.add(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-ChanManager#Blacklist.remove(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Blacklist.remove(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 #### Whitelist
@@ -116,19 +116,19 @@ ChanManager#Blacklist.remove(id: string, options?: ChanManagerRequestOptions): P
 ##### getIds
 
 ```ts
-ChanManager#Whitelist.getIds(options?: ChanManagerRequestOptions): Promise<string[]>
+ChanManager#Whitelist.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
 ```
 
 ##### add
 
 ```ts
-ChanManager#Whitelist.add(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Whitelist.add(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-ChanManager#Whitelist.remove(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Whitelist.remove(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 #### TokenPolicy
@@ -136,13 +136,13 @@ ChanManager#Whitelist.remove(id: string, options?: ChanManagerRequestOptions): P
 ##### getIds
 
 ```ts
-ChanManager#TokenPolicy.getIds(options?: ChanManagerRequestOptions): Promise<string[]>
+ChanManager#TokenPolicy.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
 ```
 
 ##### get
 
 ```ts
-ChanManager#TokenPolicy.get(id: string, options?: ChanManagerRequestOptions): Promise<{
+ChanManager#TokenPolicy.get(id: string, options?: IChanManagerRequestOptions): Promise<{
   writeTokenRequired: boolean | null
   readTokenRequired: boolean | null
 }>
@@ -151,25 +151,25 @@ ChanManager#TokenPolicy.get(id: string, options?: ChanManagerRequestOptions): Pr
 ##### setWriteTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.setWriteTokenRequired(id: string, val: boolean, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.setWriteTokenRequired(id: string, val: boolean, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### removeWriteTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.removeWriteTokenRequired(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.removeWriteTokenRequired(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### setReadTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.setReadTokenRequired(id: string, val: boolean, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.setReadTokenRequired(id: string, val: boolean, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### removeReadTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.removeReadTokenRequired(id: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.removeReadTokenRequired(id: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 #### Token
@@ -177,13 +177,13 @@ ChanManager#TokenPolicy.removeReadTokenRequired(id: string, options?: ChanManage
 ##### getIds
 
 ```ts
-ChanManager#Token.getIds(options?: ChanManagerRequestOptions): Promise<string[]>
+ChanManager#Token.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
 ```
 
 ##### getTokens
 
 ```ts
-ChanManager#Token.getTokens(id: string, options?: ChanManagerRequestOptions): Promise<Array<{
+ChanManager#Token.getTokens(id: string, options?: IChanManagerRequestOptions): Promise<Array<{
   token: string
   write: boolean
   read: boolean
@@ -193,23 +193,23 @@ ChanManager#Token.getTokens(id: string, options?: ChanManagerRequestOptions): Pr
 ##### addWriteToken
 
 ```ts
-ChanManager#Token.addWriteToken(id: string, token: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Token.addWriteToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### removeWriteToken
 
 ```ts
-ChanManager#Token.removeWriteToken(id: string, token: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Token.removeWriteToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### addReadToken
 
 ```ts
-ChanManager#Token.addReadToken(id: string, token: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Token.addReadToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
 
 ##### removeReadToken
 
 ```ts
-ChanManager#Token.removeReadToken(id: string, token: string, options?: ChanManagerRequestOptions): Promise<void>
+ChanManager#Token.removeReadToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
 ```
