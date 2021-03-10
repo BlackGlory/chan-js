@@ -1,16 +1,18 @@
 import { fetch } from 'extra-fetch'
 import { get, post } from 'extra-request'
-import { url, pathname, text, json, searchParams, signal } from 'extra-request/lib/es2018/transformers'
+import { url, pathname, text, json, searchParams, signal, keepalive } from 'extra-request/lib/es2018/transformers'
 import { ok, toText, toJSON } from 'extra-response'
 
 export interface IChanClientOptions {
   server: string
   token?: string
+  keepalive?: boolean
 }
 
 export interface IChanClientRequestOptions {
   signal?: AbortSignal
   token?: string
+  keepalive?: boolean
 }
 
 export class ChanClient {
@@ -29,6 +31,7 @@ export class ChanClient {
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , text(val)
+    , keepalive(this.options.keepalive ?? options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -47,6 +50,7 @@ export class ChanClient {
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , json(val)
+    , keepalive(this.options.keepalive ?? options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -77,6 +81,7 @@ export class ChanClient {
     , pathname(`chan/${id}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
+    , keepalive(this.options.keepalive ?? options.keepalive)
     )
 
     return await fetch(req).then(ok)

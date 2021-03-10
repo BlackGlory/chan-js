@@ -16,6 +16,7 @@ yarn add @blackglory/chan-js
 new ChanClient({
   server: string
 , token?: string
+, keepalive?: boolean
 })
 ```
 
@@ -23,6 +24,7 @@ new ChanClient({
 interface IChanClientRequestOptions {
   signal?: AbortSignal
   token?: string
+  keepalive?: boolean
 }
 ```
 
