@@ -31,7 +31,7 @@ export class ChanClient {
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , text(val)
-    , keepalive(this.options.keepalive ?? options.keepalive)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -50,7 +50,7 @@ export class ChanClient {
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , json(val)
-    , keepalive(this.options.keepalive ?? options.keepalive)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     await fetch(req).then(ok)
@@ -81,7 +81,7 @@ export class ChanClient {
     , pathname(`chan/${id}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
-    , keepalive(this.options.keepalive ?? options.keepalive)
+    , keepalive(options.keepalive ?? this.options.keepalive)
     )
 
     return await fetch(req).then(ok)
