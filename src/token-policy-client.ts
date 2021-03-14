@@ -17,7 +17,7 @@ export class TokenPolicyClient {
   async getIds(options: ChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
-    , pathname('/api/chan-with-token-policies')
+    , pathname('/admin/chan-with-token-policies')
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -30,7 +30,7 @@ export class TokenPolicyClient {
   async get(id: string, options: ChanManagerRequestOptions = {}): Promise<TokenPolicy> {
     const req = get(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/token-policies`)
+    , pathname(`/admin/chan/${id}/token-policies`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -43,7 +43,7 @@ export class TokenPolicyClient {
   async setWriteTokenRequired(id: string, val: boolean, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/token-policies/write-token-required`)
+    , pathname(`/admin/chan/${id}/token-policies/write-token-required`)
     , password(this.options.adminPassword)
     , json(val)
     , options.signal && signal(options.signal)
@@ -55,7 +55,7 @@ export class TokenPolicyClient {
   async removeWriteTokenRequired(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/token-policies/write-token-required`)
+    , pathname(`/admin/chan/${id}/token-policies/write-token-required`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -66,7 +66,7 @@ export class TokenPolicyClient {
   async setReadTokenRequired(id: string, val: boolean, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/token-policies/read-token-required`)
+    , pathname(`/admin/chan/${id}/token-policies/read-token-required`)
     , password(this.options.adminPassword)
     , json(val)
     , options.signal && signal(options.signal)
@@ -78,7 +78,7 @@ export class TokenPolicyClient {
   async removeReadTokenRequired(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/token-policies/read-token-required`)
+    , pathname(`/admin/chan/${id}/token-policies/read-token-required`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )

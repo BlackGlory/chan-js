@@ -18,7 +18,7 @@ export class TokenClient {
   async getIds(options: ChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
-    , pathname('/api/chan-with-tokens')
+    , pathname('/admin/chan-with-tokens')
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -31,7 +31,7 @@ export class TokenClient {
   async getTokens(id: string, options: ChanManagerRequestOptions = {}): Promise<TokenInfo[]> {
     const req = get(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/tokens`)
+    , pathname(`/admin/chan/${id}/tokens`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -44,7 +44,7 @@ export class TokenClient {
   async addWriteToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/tokens/${token}/write`)
+    , pathname(`/admin/chan/${id}/tokens/${token}/write`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -55,7 +55,7 @@ export class TokenClient {
   async removeWriteToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/tokens/${token}/write`)
+    , pathname(`/admin/chan/${id}/tokens/${token}/write`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -66,7 +66,7 @@ export class TokenClient {
   async addReadToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/tokens/${token}/read`)
+    , pathname(`/admin/chan/${id}/tokens/${token}/read`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -77,7 +77,7 @@ export class TokenClient {
   async removeReadToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/api/chan/${id}/tokens/${token}/read`)
+    , pathname(`/admin/chan/${id}/tokens/${token}/read`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )

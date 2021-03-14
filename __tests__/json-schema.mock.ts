@@ -3,7 +3,7 @@ import { rest } from 'msw'
 import { badAuth, badJson } from '@test/utils'
 
 export const server = setupServer(
-  rest.get('/api/chan-with-json-schema', (req, res, ctx) => {
+  rest.get('/admin/chan-with-json-schema', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(
@@ -12,7 +12,7 @@ export const server = setupServer(
     )
   })
 
-, rest.get('/api/chan/:id/json-schema', (req, res, ctx) => {
+, rest.get('/admin/chan/:id/json-schema', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(
@@ -21,14 +21,14 @@ export const server = setupServer(
     )
   })
 
-, rest.put('/api/chan/:id/json-schema', (req, res, ctx) => {
+, rest.put('/admin/chan/:id/json-schema', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
     if (badJson(req)) return res(ctx.status(400))
 
     return res(ctx.status(204))
   })
 
-, rest.delete('/api/chan/:id/json-schema', (req, res, ctx) => {
+, rest.delete('/admin/chan/:id/json-schema', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
