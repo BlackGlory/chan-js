@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/BlackGlory/chan-js/compare/v0.2.26...v0.3.0) (2021-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename /api to /admin
+
+### Features
+
+* rename /api to /admin ([d41a818](https://github.com/BlackGlory/chan-js/commit/d41a818b7b2068d46f0b8bd0c69e77d0f216d69f))
+
 ### [0.2.26](https://github.com/BlackGlory/chan-js/compare/v0.2.25...v0.2.26) (2021-03-10)
 
 
