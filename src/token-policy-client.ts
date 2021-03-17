@@ -4,7 +4,7 @@ import { get, put, del } from 'extra-request'
 import { url, pathname, json, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import { IChanManagerOptions } from './chan-manager'
-import { ChanManagerRequestOptions } from './types'
+import { IChanManagerRequestOptions } from './types'
 
 interface TokenPolicy {
   writeTokenRequired: boolean | null
@@ -14,7 +14,7 @@ interface TokenPolicy {
 export class TokenPolicyClient {
   constructor(private options: IChanManagerOptions) {}
 
-  async getIds(options: ChanManagerRequestOptions = {}): Promise<string[]> {
+  async getIds(options: IChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/chan-with-token-policies')
@@ -27,7 +27,7 @@ export class TokenPolicyClient {
       .then(toJSON) as string[]
   }
 
-  async get(id: string, options: ChanManagerRequestOptions = {}): Promise<TokenPolicy> {
+  async get(id: string, options: IChanManagerRequestOptions = {}): Promise<TokenPolicy> {
     const req = get(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/token-policies`)
@@ -40,7 +40,7 @@ export class TokenPolicyClient {
       .then(toJSON) as TokenPolicy
   }
 
-  async setWriteTokenRequired(id: string, val: boolean, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async setWriteTokenRequired(id: string, val: boolean, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/token-policies/write-token-required`)
@@ -52,7 +52,7 @@ export class TokenPolicyClient {
     await fetch(req).then(ok)
   }
 
-  async removeWriteTokenRequired(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async removeWriteTokenRequired(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/token-policies/write-token-required`)
@@ -63,7 +63,7 @@ export class TokenPolicyClient {
     await fetch(req).then(ok)
   }
 
-  async setReadTokenRequired(id: string, val: boolean, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async setReadTokenRequired(id: string, val: boolean, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/token-policies/read-token-required`)
@@ -75,7 +75,7 @@ export class TokenPolicyClient {
     await fetch(req).then(ok)
   }
 
-  async removeReadTokenRequired(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async removeReadTokenRequired(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/token-policies/read-token-required`)

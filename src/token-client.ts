@@ -4,7 +4,7 @@ import { get, put, del } from 'extra-request'
 import { url, pathname, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import type { IChanManagerOptions } from './chan-manager'
-import { ChanManagerRequestOptions } from './types'
+import { IChanManagerRequestOptions } from './types'
 
 interface TokenInfo {
   token: string
@@ -15,7 +15,7 @@ interface TokenInfo {
 export class TokenClient {
   constructor(private options: IChanManagerOptions) {}
 
-  async getIds(options: ChanManagerRequestOptions = {}): Promise<string[]> {
+  async getIds(options: IChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/chan-with-tokens')
@@ -28,7 +28,7 @@ export class TokenClient {
       .then(toJSON) as string[]
   }
 
-  async getTokens(id: string, options: ChanManagerRequestOptions = {}): Promise<TokenInfo[]> {
+  async getTokens(id: string, options: IChanManagerRequestOptions = {}): Promise<TokenInfo[]> {
     const req = get(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/tokens`)
@@ -41,7 +41,7 @@ export class TokenClient {
       .then(toJSON) as TokenInfo[]
   }
 
-  async addWriteToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async addWriteToken(id: string, token: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/tokens/${token}/write`)
@@ -52,7 +52,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async removeWriteToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async removeWriteToken(id: string, token: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/tokens/${token}/write`)
@@ -63,7 +63,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async addReadToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async addReadToken(id: string, token: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/tokens/${token}/read`)
@@ -74,7 +74,7 @@ export class TokenClient {
     await fetch(req).then(ok)
   }
 
-  async removeReadToken(id: string, token: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async removeReadToken(id: string, token: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/chan/${id}/tokens/${token}/read`)

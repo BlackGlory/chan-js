@@ -4,12 +4,12 @@ import { get, put, del } from 'extra-request'
 import { url, pathname, signal } from 'extra-request/lib/es2018/transformers'
 import { ok, toJSON } from 'extra-response'
 import { IChanManagerOptions } from './chan-manager'
-import { ChanManagerRequestOptions } from './types'
+import { IChanManagerRequestOptions } from './types'
 
 export class WhitelistClient {
   constructor(private options: IChanManagerOptions) {}
 
-  async getIds(options: ChanManagerRequestOptions = {}): Promise<string[]> {
+  async getIds(options: IChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/whitelist')
@@ -22,7 +22,7 @@ export class WhitelistClient {
       .then(toJSON) as string[]
   }
 
-  async add(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async add(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
     , pathname(`/admin/whitelist/${id}`)
@@ -33,7 +33,7 @@ export class WhitelistClient {
     await fetch(req).then(ok)
   }
 
-  async remove(id: string, options: ChanManagerRequestOptions = {}): Promise<void> {
+  async remove(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = del(
       url(this.options.server)
     , pathname(`/admin/whitelist/${id}`)
