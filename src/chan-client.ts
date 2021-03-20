@@ -3,6 +3,8 @@ import { get, post } from 'extra-request'
 import { url, pathname, text, json, searchParams, signal, keepalive } from 'extra-request/lib/es2018/transformers'
 import { ok, toText, toJSON } from 'extra-response'
 
+export { HTTPClientError } from '@blackglory/http-status'
+
 export interface IChanClientOptions {
   server: string
   token?: string
