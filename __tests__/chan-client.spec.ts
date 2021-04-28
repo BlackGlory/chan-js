@@ -8,7 +8,7 @@ beforeEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('ChanClient', () => {
-  it('enqueue(namespace: string, val: string, options?: { signal?: string, token?: string }): Promise<void>', async () => {
+  test('enqueue(namespace: string, val: string, options?: { signal?: string, token?: string }): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const val = 'message'
@@ -20,7 +20,7 @@ describe('ChanClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('enqueueJSON(namespace: string, val: Json, options?: { signal?: string, token?: string }): Promise<void>', async () => {
+  test('enqueueJSON(namespace: string, val: Json, options?: { signal?: string, token?: string }): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const val = 'message'
@@ -32,7 +32,7 @@ describe('ChanClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('dequeue(namespace: string, options?: { signal?: string, token?: string }): Promise<string>', async () => {
+  test('dequeue(namespace: string, options?: { signal?: string, token?: string }): Promise<string>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -43,7 +43,7 @@ describe('ChanClient', () => {
     expect(proResult).toBe('null')
   })
 
-  it('dequeueJSON(namespace: string, options?: { signal?: string, token?: string }): Promise<Json>', async () => {
+  test('dequeueJSON(namespace: string, options?: { signal?: string, token?: string }): Promise<Json>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 

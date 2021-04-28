@@ -8,7 +8,7 @@ beforeEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('TokenPolicyClient', () => {
-  it('getNamespaces(): Promise<string[]>', async () => {
+  test('getNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
     const result = client.getNamespaces()
@@ -18,7 +18,11 @@ describe('TokenPolicyClient', () => {
     expect(proResult).toStrictEqual(['namespace'])
   })
 
-  it('get(namespace: string): Promise<{ writeTokenRequired: boolean | null; readTokenRequired: boolean | null }>', async () => {
+  test(`
+    get(
+      namespace: string
+    ): Promise<{ writeTokenRequired: boolean | null; readTokenRequired: boolean | null }>
+  `, async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -32,7 +36,7 @@ describe('TokenPolicyClient', () => {
     })
   })
 
-  it('setWriteTokenRequired(namespace: string, val: boolean): Promise<void>', async () => {
+  test('setWriteTokenRequired(namespace: string, val: boolean): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const val = true
@@ -44,7 +48,7 @@ describe('TokenPolicyClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('removeWriteTokenRequired(namespace: string): Promise<void>', async () => {
+  test('removeWriteTokenRequired(namespace: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -55,7 +59,7 @@ describe('TokenPolicyClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('setReadTokenRequired(namespace: string, val: boolean): Promise<void>', async () => {
+  test('setReadTokenRequired(namespace: string, val: boolean): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const val = true
@@ -67,7 +71,7 @@ describe('TokenPolicyClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('removeReadTokenRequired(namespace: string): Promise<void>', async () => {
+  test('removeReadTokenRequired(namespace: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 

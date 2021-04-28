@@ -8,7 +8,7 @@ beforeEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('TokenClient', () => {
-  it('getNamespaces(): Promise<string[]>', async () => {
+  test('getNamespaces(): Promise<string[]>', async () => {
     const client = createClient()
 
     const result = client.getNamespaces()
@@ -18,7 +18,7 @@ describe('TokenClient', () => {
     expect(proResult).toStrictEqual(['namespace'])
   })
 
-  it('getTokens(namespace: string): Promise<Array<{ token: string; write: boolean; read: boolean }>>', async () => {
+  test('getTokens(namespace: string): Promise<Array<{ token: string; write: boolean; read: boolean }>>', async () => {
     const client = createClient()
     const namespace = 'namespace'
 
@@ -33,7 +33,7 @@ describe('TokenClient', () => {
     }])
   })
 
-  it('addWriteToken(namespace: string, token: string): Promise<void>', async () => {
+  test('addWriteToken(namespace: string, token: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const token = 'token'
@@ -45,7 +45,7 @@ describe('TokenClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('removeWriteToken(namespace: string, token: string): Promise<void>', async () => {
+  test('removeWriteToken(namespace: string, token: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const token = 'token'
@@ -57,7 +57,7 @@ describe('TokenClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('addReadToken(namespace: string, token: string): Promise<void>', async () => {
+  test('addReadToken(namespace: string, token: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const token = 'token'
@@ -69,7 +69,7 @@ describe('TokenClient', () => {
     expect(proResult).toBeUndefined()
   })
 
-  it('removeReadToken(namespace: string, token: string): Promise<void>', async () => {
+  test('removeReadToken(namespace: string, token: string): Promise<void>', async () => {
     const client = createClient()
     const namespace = 'namespace'
     const token = 'token'
