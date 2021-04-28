@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/BlackGlory/chan-js/compare/v0.3.5...v0.4.0) (2021-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename
+
+* rename ([09c5045](https://github.com/BlackGlory/chan-js/commit/09c5045b0e280428e916c38fb02df85b1113710a))
+
 ### [0.3.5](https://github.com/BlackGlory/chan-js/compare/v0.3.4...v0.3.5) (2021-03-20)
 
 
