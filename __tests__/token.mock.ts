@@ -6,10 +6,10 @@ export const server = setupServer(
   rest.get('/admin/chan-with-tokens', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
-    return res(ctx.status(200), ctx.json(['id']))
+    return res(ctx.status(200), ctx.json(['namespace']))
   })
 
-, rest.get('/admin/chan/:id/tokens', (req, res, ctx) => {
+, rest.get('/admin/chan/:namespace/tokens', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(
@@ -24,25 +24,25 @@ export const server = setupServer(
     )
   })
 
-, rest.put('/admin/chan/:id/tokens/:token/write', (req, res, ctx) => {
+, rest.put('/admin/chan/:namespace/tokens/:token/write', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
   })
 
-, rest.delete('/admin/chan/:id/tokens/:token/write', (req, res, ctx) => {
+, rest.delete('/admin/chan/:namespace/tokens/:token/write', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
   })
 
-, rest.put('/admin/chan/:id/tokens/:token/read', (req, res, ctx) => {
+, rest.put('/admin/chan/:namespace/tokens/:token/read', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
   })
 
-, rest.delete('/admin/chan/:id/tokens/:token/read', (req, res, ctx) => {
+, rest.delete('/admin/chan/:namespace/tokens/:token/read', (req, res, ctx) => {
     if (badAuth(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))

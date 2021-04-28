@@ -14,7 +14,7 @@ interface TokenPolicy {
 export class TokenPolicyClient {
   constructor(private options: IChanManagerOptions) {}
 
-  async getIds(options: IChanManagerRequestOptions = {}): Promise<string[]> {
+  async getNamespaces(options: IChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/chan-with-token-policies')
@@ -27,10 +27,13 @@ export class TokenPolicyClient {
       .then(toJSON) as string[]
   }
 
-  async get(id: string, options: IChanManagerRequestOptions = {}): Promise<TokenPolicy> {
+  async get(
+    namespace: string
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<TokenPolicy> {
     const req = get(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/token-policies`)
+    , pathname(`/admin/chan/${namespace}/token-policies`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -40,10 +43,14 @@ export class TokenPolicyClient {
       .then(toJSON) as TokenPolicy
   }
 
-  async setWriteTokenRequired(id: string, val: boolean, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async setWriteTokenRequired(
+    namespace: string
+  , val: boolean
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/token-policies/write-token-required`)
+    , pathname(`/admin/chan/${namespace}/token-policies/write-token-required`)
     , password(this.options.adminPassword)
     , json(val)
     , options.signal && signal(options.signal)
@@ -52,10 +59,13 @@ export class TokenPolicyClient {
     await fetch(req).then(ok)
   }
 
-  async removeWriteTokenRequired(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async removeWriteTokenRequired(
+    namespace: string
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/token-policies/write-token-required`)
+    , pathname(`/admin/chan/${namespace}/token-policies/write-token-required`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -63,10 +73,14 @@ export class TokenPolicyClient {
     await fetch(req).then(ok)
   }
 
-  async setReadTokenRequired(id: string, val: boolean, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async setReadTokenRequired(
+    namespace: string
+  , val: boolean
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/token-policies/read-token-required`)
+    , pathname(`/admin/chan/${namespace}/token-policies/read-token-required`)
     , password(this.options.adminPassword)
     , json(val)
     , options.signal && signal(options.signal)
@@ -75,10 +89,13 @@ export class TokenPolicyClient {
     await fetch(req).then(ok)
   }
 
-  async removeReadTokenRequired(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async removeReadTokenRequired(
+    namespace: string
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/token-policies/read-token-required`)
+    , pathname(`/admin/chan/${namespace}/token-policies/read-token-required`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )

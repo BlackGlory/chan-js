@@ -9,7 +9,7 @@ import { IChanManagerRequestOptions } from './types'
 export class BlacklistClient {
   constructor(private options: IChanManagerOptions) {}
 
-  async getIds(options: IChanManagerRequestOptions = {}): Promise<string[]> {
+  async getNamespaces(options: IChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/blacklist')
@@ -22,10 +22,10 @@ export class BlacklistClient {
       .then(toJSON) as string[]
   }
 
-  async add(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async add(namespace: string, options: IChanManagerRequestOptions = {}): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/admin/blacklist/${id}`)
+    , pathname(`/admin/blacklist/${namespace}`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -33,10 +33,13 @@ export class BlacklistClient {
     await fetch(req).then(ok)
   }
 
-  async remove(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async remove(
+    namespace: string
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/admin/blacklist/${id}`)
+    , pathname(`/admin/blacklist/${namespace}`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )

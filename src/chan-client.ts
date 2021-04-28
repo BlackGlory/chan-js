@@ -21,7 +21,7 @@ export class ChanClient {
   constructor(private options: IChanClientOptions) {}
 
   async enqueue(
-    id: string
+    namespace: string
   , val: string
   , options: IChanClientRequestOptions = {}
   ): Promise<void> {
@@ -29,7 +29,7 @@ export class ChanClient {
 
     const req = post(
       url(this.options.server)
-    , pathname(`chan/${id}`)
+    , pathname(`chan/${namespace}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , text(val)
@@ -40,7 +40,7 @@ export class ChanClient {
   }
 
   async enqueueJSON<T>(
-    id: string
+    namespace: string
   , val: T
   , options: IChanClientRequestOptions = {}
   ): Promise<void> {
@@ -48,7 +48,7 @@ export class ChanClient {
 
     const req = post(
       url(this.options.server)
-    , pathname(`chan/${id}`)
+    , pathname(`chan/${namespace}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , json(val)
@@ -59,28 +59,28 @@ export class ChanClient {
   }
 
   dequeue(
-    id: string
+    namespace: string
   , options?: IChanClientRequestOptions
   ): Promise<string> {
-    return this._dequeue(id, options).then(toText)
+    return this._dequeue(namespace, options).then(toText)
   }
 
   async dequeueJSON<T>(
-    id: string
+    namespace: string
   , options?: IChanClientRequestOptions
   ): Promise<T> {
-    return await this._dequeue(id, options).then(toJSON) as T
+    return await this._dequeue(namespace, options).then(toJSON) as T
   }
 
   private async _dequeue(
-    id: string
+    namespace: string
   , options: IChanClientRequestOptions = {}
   ): Promise<Response> {
     const token = options.token ?? this.options.token
 
     const req = get(
       url(this.options.server)
-    , pathname(`chan/${id}`)
+    , pathname(`chan/${namespace}`)
     , token && searchParams({ token })
     , options.signal && signal(options.signal)
     , keepalive(options.keepalive ?? this.options.keepalive)

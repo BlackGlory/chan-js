@@ -10,7 +10,7 @@ import { IChanManagerRequestOptions } from './types'
 export class JsonSchemaClient {
   constructor(private options: IChanManagerOptions) {}
 
-  async getIds(options: IChanManagerRequestOptions = {}): Promise<string[]> {
+  async getNamespaces(options: IChanManagerRequestOptions = {}): Promise<string[]> {
     const req = get(
       url(this.options.server)
     , pathname('/admin/chan-with-json-schema')
@@ -23,10 +23,13 @@ export class JsonSchemaClient {
       .then(toJSON) as string[]
   }
 
-  async get(id: string, options: IChanManagerRequestOptions = {}): Promise<unknown> {
+  async get(
+    namespace: string
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<unknown> {
     const req = get(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/json-schema`)
+    , pathname(`/admin/chan/${namespace}/json-schema`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )
@@ -36,10 +39,14 @@ export class JsonSchemaClient {
       .then(toJSON)
   }
 
-  async set(id: string, schema: Json, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async set(
+    namespace: string
+  , schema: Json
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = put(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/json-schema`)
+    , pathname(`/admin/chan/${namespace}/json-schema`)
     , password(this.options.adminPassword)
     , json(schema)
     , options.signal && signal(options.signal)
@@ -48,10 +55,13 @@ export class JsonSchemaClient {
     await fetch(req).then(ok)
   }
 
-  async remove(id: string, options: IChanManagerRequestOptions = {}): Promise<void> {
+  async remove(
+    namespace: string
+  , options: IChanManagerRequestOptions = {}
+  ): Promise<void> {
     const req = del(
       url(this.options.server)
-    , pathname(`/admin/chan/${id}/json-schema`)
+    , pathname(`/admin/chan/${namespace}/json-schema`)
     , password(this.options.adminPassword)
     , options.signal && signal(options.signal)
     )

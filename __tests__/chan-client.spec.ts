@@ -8,46 +8,46 @@ beforeEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('ChanClient', () => {
-  it('enqueue(id: string, val: string, options?: { signal?: string, token?: string }): Promise<void>', async () => {
+  it('enqueue(namespace: string, val: string, options?: { signal?: string, token?: string }): Promise<void>', async () => {
     const client = createClient()
-    const id = 'id'
+    const namespace = 'namespace'
     const val = 'message'
 
-    const result = client.enqueue(id, val)
+    const result = client.enqueue(namespace, val)
     const proResult = await result
 
     expect(result).toBePromise()
     expect(proResult).toBeUndefined()
   })
 
-  it('enqueueJSON(id: string, val: Json, options?: { signal?: string, token?: string }): Promise<void>', async () => {
+  it('enqueueJSON(namespace: string, val: Json, options?: { signal?: string, token?: string }): Promise<void>', async () => {
     const client = createClient()
-    const id = 'id'
+    const namespace = 'namespace'
     const val = 'message'
 
-    const result = client.enqueue(id, val)
+    const result = client.enqueue(namespace, val)
     const proResult = await result
 
     expect(result).toBePromise()
     expect(proResult).toBeUndefined()
   })
 
-  it('dequeue(id: string, options?: { signal?: string, token?: string }): Promise<string>', async () => {
+  it('dequeue(namespace: string, options?: { signal?: string, token?: string }): Promise<string>', async () => {
     const client = createClient()
-    const id = 'id'
+    const namespace = 'namespace'
 
-    const result = client.dequeue(id)
+    const result = client.dequeue(namespace)
     const proResult = await result
 
     expect(result).toBePromise()
     expect(proResult).toBe('null')
   })
 
-  it('dequeueJSON(id: string, options?: { signal?: string, token?: string }): Promise<Json>', async () => {
+  it('dequeueJSON(namespace: string, options?: { signal?: string, token?: string }): Promise<Json>', async () => {
     const client = createClient()
-    const id = 'id'
+    const namespace = 'namespace'
 
-    const result = client.dequeueJSON(id)
+    const result = client.dequeueJSON(namespace)
     const proResult = await result
 
     expect(result).toBePromise()

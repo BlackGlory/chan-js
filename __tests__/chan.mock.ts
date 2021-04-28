@@ -3,13 +3,13 @@ import { rest } from 'msw'
 import { badToken } from './utils'
 
 export const server = setupServer(
-  rest.post('/chan/:id', (req, res, ctx) => {
+  rest.post('/chan/:namespace', (req, res, ctx) => {
     if (badToken(req)) return res(ctx.status(401))
 
     return res(ctx.status(204))
   })
 
-, rest.get('/chan/:id', (req, res, ctx) => {
+, rest.get('/chan/:namespace', (req, res, ctx) => {
     if (badToken(req)) return res(ctx.status(401))
 
     return res(ctx.status(200), ctx.text('null'))

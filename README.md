@@ -31,25 +31,39 @@ interface IChanClientRequestOptions {
 #### enqueue
 
 ```ts
-ChanClient#enqueue(id: string, val: string, options?: IChanClientRequestOptions): Promise<void>
+ChanClient#enqueue(
+  namespace: string
+, val: string
+, options?: IChanClientRequestOptions
+): Promise<void>
 ```
 
 #### enqueueJSON
 
 ```ts
-ChanClient#enqueueJSON(id: string, val: string, options?: IChanClientRequestOptions): Promise<void>
+ChanClient#enqueueJSON(
+  namespace: string
+, val: string
+, options?: IChanClientRequestOptions
+): Promise<void>
 ```
 
 #### dequeue
 
 ```ts
-ChanClient#dequeue(id: string, options?: IChanClientRequestOptions): Promise<string>
+ChanClient#dequeue(
+  namespace: string
+, options?: IChanClientRequestOptions
+): Promise<string>
 ```
 
 #### dequeueJSON
 
 ```ts
-ChanClient#dequeueJSON(id: string, options?: IChanClientRequestOptions): Promise<Json>
+ChanClient#dequeueJSON(
+  namespace: string
+, options?: IChanClientRequestOptions
+): Promise<Json>
 ```
 
 ### ChanManager
@@ -69,68 +83,96 @@ interface IChanManagerRequestOptions {
 
 #### JsonSchema
 
-##### getIds
+##### getNamespaces
 
 ```ts
-ChanManager#JsonSchema.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
+ChanManager#JsonSchema.getNamespaces(
+  options?: IChanManagerRequestOptions
+): Promise<string[]>
 ```
 
 ##### get
 
 ```ts
-ChanManager#JsonSchema.get(id: string, options?: IChanManagerRequestOptions): Promise<Json>
+ChanManager#JsonSchema.get(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<Json>
 ```
 
 ##### set
 
 ```ts
-ChanManager#JsonSchema.set(id: string, schema: Json, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#JsonSchema.set(
+  namespace: string
+, schema: Json
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-ChanManager#JsonSchema.remove(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#JsonSchema.remove(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 #### Blacklist
 
-##### getIds
+##### getNamespaces
 
 ```ts
-ChanManager#Blacklist.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
+ChanManager#Blacklist.getNamespaces(
+  options?: IChanManagerRequestOptions
+): Promise<string[]>
 ```
 
 ##### add
 
 ```ts
-ChanManager#Blacklist.add(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Blacklist.add(
+  namespace: string
+, options?: IChanManagerRequestOptionso
+): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-ChanManager#Blacklist.remove(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Blacklist.remove(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 #### Whitelist
 
-##### getIds
+##### getNamespace
 
 ```ts
-ChanManager#Whitelist.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
+ChanManager#Whitelist.getNamespaces(
+  options?: IChanManagerRequestOptions
+): Promise<string[]>
 ```
 
 ##### add
 
 ```ts
-ChanManager#Whitelist.add(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Whitelist.add(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### remove
 
 ```ts
-ChanManager#Whitelist.remove(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Whitelist.remove(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 #### TokenPolicy
@@ -144,7 +186,10 @@ ChanManager#TokenPolicy.getIds(options?: IChanManagerRequestOptions): Promise<st
 ##### get
 
 ```ts
-ChanManager#TokenPolicy.get(id: string, options?: IChanManagerRequestOptions): Promise<{
+ChanManager#TokenPolicy.get(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<{
   writeTokenRequired: boolean | null
   readTokenRequired: boolean | null
 }>
@@ -153,39 +198,56 @@ ChanManager#TokenPolicy.get(id: string, options?: IChanManagerRequestOptions): P
 ##### setWriteTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.setWriteTokenRequired(id: string, val: boolean, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.setWriteTokenRequired(
+  namespace: string
+, val: boolean
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeWriteTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.removeWriteTokenRequired(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.removeWriteTokenRequired(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### setReadTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.setReadTokenRequired(id: string, val: boolean, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.setReadTokenRequired(
+  namespace: string
+, val: boolean
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeReadTokenRequired
 
 ```ts
-ChanManager#TokenPolicy.removeReadTokenRequired(id: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#TokenPolicy.removeReadTokenRequired(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 #### Token
 
-##### getIds
+##### getNamespaces
 
 ```ts
-ChanManager#Token.getIds(options?: IChanManagerRequestOptions): Promise<string[]>
+ChanManager#Token.getNamespaces(options?: IChanManagerRequestOptions): Promise<string[]>
 ```
 
 ##### getTokens
 
 ```ts
-ChanManager#Token.getTokens(id: string, options?: IChanManagerRequestOptions): Promise<Array<{
+ChanManager#Token.getTokens(
+  namespace: string
+, options?: IChanManagerRequestOptions
+): Promise<Array<{
   token: string
   write: boolean
   read: boolean
@@ -195,23 +257,39 @@ ChanManager#Token.getTokens(id: string, options?: IChanManagerRequestOptions): P
 ##### addWriteToken
 
 ```ts
-ChanManager#Token.addWriteToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Token.addWriteToken(
+  namespace: string
+, token: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeWriteToken
 
 ```ts
-ChanManager#Token.removeWriteToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Token.removeWriteToken(
+  namespace: string
+, token: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### addReadToken
 
 ```ts
-ChanManager#Token.addReadToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Token.addReadToken(
+  namespace: string
+, token: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
 
 ##### removeReadToken
 
 ```ts
-ChanManager#Token.removeReadToken(id: string, token: string, options?: IChanManagerRequestOptions): Promise<void>
+ChanManager#Token.removeReadToken(
+  namespace: string
+, token: string
+, options?: IChanManagerRequestOptions
+): Promise<void>
 ```
